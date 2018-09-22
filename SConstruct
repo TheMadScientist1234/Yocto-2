@@ -1,7 +1,3 @@
-env = Environment(
-    CXXFLAGS='-std=c++11'
-)
-
 FILES = [
     'core/Main',
     'core/Application'
@@ -20,6 +16,11 @@ LIBS = [
     'rt',
     'dl'
 ]
+
+env = Environment(
+    LIBS=LIBS,
+    CXXFLAGS='-std=c++11'
+)
 
 O_FILES = []
 
