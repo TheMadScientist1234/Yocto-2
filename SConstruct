@@ -4,6 +4,7 @@ FILES = [
 ]
 
 LIBS = [
+    'lua5.2',
     'glfw',
     'X11',
     'Xi',
