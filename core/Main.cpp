@@ -7,6 +7,17 @@
 
 #include <lua5.2/lua.hpp>
 
+std::string get_word()
+{
+    std::string word;
+    char c = getchar();
+    while (c != '\n')
+    {
+        word.push_back(c);
+	c = getchar();
+    }
+    return word;
+}
 static void print_error(lua_State* state) {
   // The error message is on top of the stack.
   // Fetch it, print it and then pop it off the stack.
@@ -58,9 +69,10 @@ public:
 	while(1) {
 		std::cout << "> ";
 		std::cout.flush();
-		std::cin >> s;
+		s = get_word();
 		std::cout << "Entered: " << s << std::endl;
 		luaL_dostring(state, s.c_str());
+		//luaL_dostring(state, s.c_str());
 	}
 	lua_close(state);
     }
