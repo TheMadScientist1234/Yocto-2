@@ -5,7 +5,7 @@
 #include <string>
 #include <stdexcept>
 
-Window::Window(std::string title, int width, int height)
+YWindow::YWindow(std::string title, int width, int height)
 {
     m_display = XOpenDisplay(NULL);
     if(m_display == nullptr)
@@ -24,12 +24,12 @@ Window::Window(std::string title, int width, int height)
     XMapRaised(m_display, m_window);
 }
 
-void Window::update()
+void YWindow::update()
 {
     XNextEvent(m_display, &ev);
 }
 
-void Window::destroy()
+void YWindow::destroy()
 {
     XDestroyWindow(m_display, m_window);
     XFree(m_screen);
