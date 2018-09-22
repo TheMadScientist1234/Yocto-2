@@ -5,10 +5,10 @@
 
 #include <string>
 
-class Window
+class YWindow
 {
 public:
-    Window(std::string title, int width, int height);
+    YWindow(std::string title, int width, int height);
 
     void update();
 
