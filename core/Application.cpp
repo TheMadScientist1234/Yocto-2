@@ -12,7 +12,7 @@ void Application::Create()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+    glfwWindowHint(GLFW_RESIZABLE, false);
 
     m_window = glfwCreateWindow(width, height, "Yocto-2", nullptr, nullptr);
     if(m_window == nullptr)
