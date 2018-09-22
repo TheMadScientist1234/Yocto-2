@@ -17,16 +17,10 @@ LIBS = [
     'dl'
 ]
 
-env = Environment(
-    CPPPATH='/usr/include/c++/7',
-    LIBS=LIBS,
-    CXXFLAGS='-std=c++11'
-)
-
 O_FILES = []
 
 for file in FILES:
-    env.Object(file + '.cpp')
+    Object(file + '.cpp', CXXFLAGS='-std=c++11')
     O_FILES.append(file + '.o')
 
-env.Program('yocto2', O_FILES, LIBS=LIBS)
+Program('yocto2', O_FILES, LIBS=LIBS, CXXFLAGS='-std=c++11')
