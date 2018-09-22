@@ -1,6 +1,6 @@
 FILES = [
     'main',
-    'window/window'
+    'graphics/window'
 ]
 
 LIBS = [
