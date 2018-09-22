@@ -18,6 +18,7 @@ LIBS = [
 ]
 
 env = Environment(
+    CPPPATH='/usr/include/c++/7',
     LIBS=LIBS,
     CXXFLAGS='-std=c++11'
 )
