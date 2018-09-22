@@ -45,11 +45,24 @@ static void execute(const char* filename)
 
 class TestApp : public Application
 {
+private:
+	char inputBuffer[10000];
 public:
     void Create()
     {
+	lua_State *state = luaL_newstate();
+	luaL_openlibs(state);
+	std::string s;
         Application::Create();
-	execute("test.lua");
+	luaL_dostring(state, "test");
+	while(1) {
+		std::cout << "> ";
+		std::cout.flush();
+		std::cin >> s;
+		std::cout << "Entered: " << s << std::endl;
+		luaL_dostring(state, s.c_str());
+	}
+	lua_close(state);
     }
 
     void Draw()
