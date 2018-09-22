@@ -1,13 +1,20 @@
 FILES = [
-    'main',
-    'graphics/window'
+    'core/Main',
+    'core/Application'
 ]
 
 LIBS = [
+    'glfw3',
     'X11',
+    'Xi',
+    'Xxf86vm',
+    'Xcursor',
+    'Xinerama',
     'GL',
     'GLEW',
-    'GLX'
+    'pthread',
+    'rt',
+    'dl'
 ]
 
 O_FILES = []
