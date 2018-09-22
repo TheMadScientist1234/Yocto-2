@@ -1,3 +1,7 @@
+env = Environment(
+    CXXFLAGS='-std=c++11'
+)
+
 FILES = [
     'core/Main',
     'core/Application'
@@ -20,7 +24,7 @@ LIBS = [
 O_FILES = []
 
 for file in FILES:
-    Object(file + '.cpp')
+    env.Object(file + '.cpp')
     O_FILES.append(file + '.o')
 
-Program('yocto2', O_FILES, LIBS=LIBS)
+env.Program('yocto2', O_FILES, LIBS=LIBS)
