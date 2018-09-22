@@ -4,7 +4,7 @@ FILES = [
 ]
 
 LIBS = [
-    'glfw3',
+    'glfw',
     'X11',
     'Xi',
     'Xxf86vm',
