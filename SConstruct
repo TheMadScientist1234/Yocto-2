@@ -4,7 +4,10 @@ FILES = [
 ]
 
 LIBS = [
-    'X11'
+    'X11',
+    'GL',
+    'GLEW',
+    'GLX'
 ]
 
 O_FILES = []
