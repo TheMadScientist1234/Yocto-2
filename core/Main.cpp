@@ -1,9 +1,9 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "Application.hpp"
-#include "../graphics/Texture.hpp"
-#include "../graphics/FontRenderer.hpp"
+#include <core/Application.hpp>
+#include <graphics/Texture.hpp>
+#include <graphics/FontRenderer.hpp>
 
 #include <GL/gl.h>
 #include <ft2build.h>
