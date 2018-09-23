@@ -19,7 +19,8 @@ LIBS = [
     'pthread',
     'rt',
     'dl',
-    'SOIL'
+    'SOIL',
+    'freetype'
 ]
 
 O_FILES = []
