@@ -3,18 +3,22 @@
 
 #include <GL/gl.h>
 
+#include <string>
+
 class Texture
 {
-private:
-    void Draw(int x, int y);
+public:
+    Texture(std::string path);
 
-    int Width();
-    int Height();
+    void draw(int x, int y);
+
+    int getWidth();
+    int getHeight();
 private:
     GLuint m_id;
 
-    int width;
-    int height;
+    int m_width;
+    int m_height;
 };
 
 #endif
