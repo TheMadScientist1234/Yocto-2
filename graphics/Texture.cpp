@@ -18,6 +18,9 @@ Texture::Texture(std::string path)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     glBindTexture(GL_TEXTURE_2D, 0);
+
+    m_width = width;
+    m_height = height;
 }
 
 void Texture::draw(int x, int y)
