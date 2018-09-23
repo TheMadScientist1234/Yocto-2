@@ -4,6 +4,8 @@
 
 #include <GLFW/glfw3.h>
 
+Application::Application() {}
+
 void Application::Create()
 {
     if(!glfwInit())
