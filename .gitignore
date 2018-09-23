@@ -1,3 +1,4 @@
 *.o
 .sconsign.dblite
 yocto2
+.vscode/
