@@ -3,16 +3,22 @@
 
 #include "Application.hpp"
 #include "../graphics/Texture.hpp"
+#include "../graphics/FontRenderer.hpp"
 
 #include <GL/gl.h>
-#include <SOIL/SOIL.h>
+#include <ft2build.h>
+#include <freetype/freetype.h>
 
 class TestApp : public Application
 {
 public:
+    TestApp(){}
+
     void Create()
     {
         Application::Create();
+
+        FT_Init_FreeType(&ft);
 
         glViewport(0, 0, width, height);
 
@@ -31,6 +37,8 @@ public:
         y = 0;
         xdir = 0;
         ydir = 0;
+
+        fonttest = new FontRenderer(ft, "PICO-8.ttf", 48);
     }
 
     void Draw()
@@ -57,6 +65,7 @@ public:
             ydir = 0;
 
         texture->draw(x, y);
+        fonttest->render("Hey", 0, 0, 2);
 
         Application::Draw();
     }
@@ -69,6 +78,9 @@ private:
     Texture* texture = nullptr;
     int x, y;
     int xdir, ydir;
+
+    FT_Library ft;
+    FontRenderer* fonttest = nullptr;
 };
 
 int main()
