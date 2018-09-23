@@ -20,6 +20,8 @@ class FontRenderer
 public:
     FontRenderer(FT_Library ft, std::string font_path, int size);
     void render(std::string text, int x, int y, float s);
+
+    void changeColor(GLubyte r, GLubyte g, GLubyte b, GLubyte a);
 private:
     FT_Face m_font;
     std::map<GLchar, Character> m_textures;

@@ -67,6 +67,8 @@ public:
             ydir = 0;
 
         texture->draw(x, y);
+
+        fonttest->changeColor(0, 255, 100, 255);
         fonttest->render("Hey this iS a long bit of text.", 0, 0, 1.5);
 
         Application::Draw();
