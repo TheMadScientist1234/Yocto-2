@@ -44,3 +44,5 @@ void Texture::draw(int x, int y)
 
 int Texture::getWidth() { return m_width; }
 int Texture::getHeight() { return m_height; }
+
+GLuint Texture::getID() { return m_id; }

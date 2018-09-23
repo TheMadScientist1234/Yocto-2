@@ -14,6 +14,8 @@ public:
 
     int getWidth();
     int getHeight();
+
+    GLuint getID();
 private:
     GLuint m_id;
 
