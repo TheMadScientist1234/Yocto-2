@@ -4,3 +4,6 @@
 [submodule "freetype"]
 	path = freetype
 	url = http://git.savannah.gnu.org/cgit/freetype/freetype2.git/
+[submodule "freetype2"]
+	path = freetype2
+	url = https://github.com/aseprite/freetype2.git
