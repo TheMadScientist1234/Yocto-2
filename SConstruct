@@ -2,6 +2,7 @@ FILES = [
     'core/Main',
     'core/Application',
     'core/memory',
+    'core/Console',
 
     'graphics/Texture',
     'graphics/FontRenderer'
