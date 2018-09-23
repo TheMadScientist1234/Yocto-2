@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <cstring>
 #include <iostream>
 
 #include "Application.hpp"
@@ -6,6 +7,8 @@
 #include <GL/gl.h>
 #include <SOIL/SOIL.h>
 
+
+static unsigned char testImage[64*64*4];
 class TestApp : public Application
 {
 public:
@@ -28,8 +31,15 @@ public:
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
 
+#if 0
         int width, height;
         unsigned char* image = SOIL_load_image("test.png", &width, &height, 0, SOIL_LOAD_RGB);
+#else
+#define width 64
+#define height 64
+	std::memset(testImage, 0xFF, 64*64*4);
+	unsigned char *image = testImage;
+#endif
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
