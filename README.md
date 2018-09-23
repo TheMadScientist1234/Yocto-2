@@ -4,16 +4,16 @@ Open-Source clone of Pico-8. Not much works yet, but it's being worked on!
 # Requirements (not a complete list)
 
 On Ubuntu:
-`sudo apt install libsoil-dev libglfw3-dev`
+`sudo apt install libsoil-dev libglfw3-dev jam scons`
 
 # Completed features
 - Memory
+- Font rendering
 
 # Partially supported features
 - Textures
 
 # Unsupported features (currently nearly everything)
- - Font rendering
  - Loading existing Pico-8 cartridges
  - Cartridge ROM
  - Display
