@@ -2,6 +2,8 @@ FILES = [
     'core/Main',
     'core/Application',
     'core/memory'
+
+    'graphics/FontRenderer'
 ]
 
 LIBS = [

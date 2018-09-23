@@ -2,87 +2,60 @@
 #include <iostream>
 
 #include "Application.hpp"
-#include "memory.hpp"
+#include "../file/BitmapLoader.hpp"
 
 #include <GL/gl.h>
 
-#include "lua.hpp"
-
-std::string get_word()
-{
-    std::string word;
-    char c = getchar();
-    while (c != '\n')
-    {
-        word.push_back(c);
-	c = getchar();
-    }
-    return word;
-}
-static void print_error(lua_State* state) {
-  // The error message is on top of the stack.
-  // Fetch it, print it and then pop it off the stack.
-  const char* message = lua_tostring(state, -1);
-  puts(message);
-  lua_pop(state, 1);
-}
-
-static void execute(const char* filename)
-{
-  lua_State *state = luaL_newstate();
-
-  // Make standard libraries available in the Lua object
-  luaL_openlibs(state);
-
-  int result;
-
-  // Load the program; this supports both source code and bytecode files.
-  result = luaL_loadfile(state, filename);
-
-  if ( result != LUA_OK ) {
-    print_error(state);
-    return;
-  }
-
-  // Finally, execute the program by calling into it.
-  // Change the arguments if you're not running vanilla Lua code.
-
-  result = lua_pcall(state, 0, LUA_MULTRET, 0);
-
-  if ( result != LUA_OK ) {
-    print_error(state);
-    return;
-  }
-}
+#include <libpng16/png.h>
 
 class TestApp : public Application
 {
-private:
-	char inputBuffer[10000];
 public:
     void Create()
     {
-	lua_State *state = luaL_newstate();
-	luaL_openlibs(state);
-	lua_register(state, "peek", Memory::peek);
-	lua_register(state, "poke", Memory::poke);
-	std::string s;
         Application::Create();
-	luaL_dostring(state, "test");
-	while(1) {
-		std::cout << "> ";
-		std::cout.flush();
-		s = get_word();
-		luaL_dostring(state, s.c_str());
-		//luaL_dostring(state, s.c_str());
-	}
-	lua_close(state);
+
+        glViewport(0, 0, width, height);
+
+        glEnable(GL_TEXTURE_2D);
+
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+
+        glOrtho(0, width, height, 0, 0.0f, 1.0f);
+
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+
+        glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
 
     void Draw()
     {
         glClearColor(0, 0, 0, 1);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glBegin(GL_QUADS);
+            glTexCoord2d(0, 0);
+            glVertex2i(0, 0);
+
+            glTexCoord2d(0, 1);
+            glVertex2i(0, 64);
+
+            glTexCoord2d(1, 1);
+            glVertex2i(64, 64);
+
+            glTexCoord2d(1, 0);
+            glVertex2i(64, 0);
+        glEnd();
+        glBindTexture(GL_TEXTURE_2D, 0);
 
         Application::Draw();
     }
@@ -91,6 +64,8 @@ public:
     {
         Application::Dispose();
     }
+private:
+    GLuint texture = 0;
 };
 
 int main()
