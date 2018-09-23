@@ -5,7 +5,6 @@ FILES = [
 ]
 
 LIBS = [
-    'lua5.2',
     'glfw',
     'X11',
     'Xi',
@@ -22,7 +21,10 @@ LIBS = [
 O_FILES = []
 
 for file in FILES:
-    Object(file + '.cpp', CXXFLAGS='-std=c++11')
+    Object(file + '.cpp', CXXFLAGS='-std=c++11 -DLUA_USE_LINUX -DLUA_COMPAT_5_2', CPPPATH=[ '.' ])
     O_FILES.append(file + '.o')
 
-Program('yocto2', O_FILES, LIBS=LIBS, CXXFLAGS='-std=c++11')
+O_FILES.append('lua/liblua.a')
+
+Command("lua/liblua.a", "", "cd lua && make")
+Program('yocto2', O_FILES, LIBS=LIBS, CXXFLAGS='-std=c++11', LIBPATH = [ 'lua' ])

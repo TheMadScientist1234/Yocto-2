@@ -6,7 +6,7 @@
 
 #include <GL/gl.h>
 
-#include <lua5.2/lua.hpp>
+#include "lua.hpp"
 
 std::string get_word()
 {

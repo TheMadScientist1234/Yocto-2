@@ -1,19 +1,19 @@
 
 #include "memory.hpp"
 #include <cassert>
+#include <vector>
 
 /* FIXME: not thread-safe */
-static uint8_t membuf[65536];
+static std::vector<uint8_t> membuf(65536);
+
 uint8_t Memory::peek(uint32_t addr)
 {
-	assert(addr >= 0 && addr <= 65535);
-	return membuf[addr];
+	return membuf.at(addr);
 }
 
 void Memory::poke(uint32_t addr, uint8_t val)
 {
-	assert(addr >= 0 && addr <= 65535);
-	membuf[addr] = val;
+	membuf.at(addr) = val;
 }
 
 int Memory::peek(lua_State *state)
