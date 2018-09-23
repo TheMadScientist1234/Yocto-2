@@ -9,9 +9,9 @@ On Ubuntu:
 # Completed features
 - Memory
 - Font rendering
+- Textures
 
 # Partially supported features
-- Textures
 
 # Unsupported features (currently nearly everything)
  - Loading existing Pico-8 cartridges
