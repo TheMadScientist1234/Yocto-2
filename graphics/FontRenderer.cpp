@@ -57,7 +57,7 @@ FontRenderer::FontRenderer(FT_Library ft, std::string font_path, int size)
     FT_Done_Face(m_font);
 }
 
-void FontRenderer::render(std::string text, int x, int y, int s)
+void FontRenderer::render(std::string text, int x, int y, float s)
 {
     for(int i = 0; i < text.length(); i++)
     {
@@ -65,16 +65,16 @@ void FontRenderer::render(std::string text, int x, int y, int s)
 
         glBegin(GL_QUADS);
             glTexCoord2i(0, 0);
-            glVertex2i(x + (i * (m_textures[text[i]].width) * s), y);
+            glVertex2f(x + (i * (m_textures[text[i]].width) * s), y);
 
             glTexCoord2i(0, 1);
-            glVertex2i(x + (i * (m_textures[text[i]].width) * s), y + m_textures[text[i]].height);
+            glVertex2f(x + (i * (m_textures[text[i]].width) * s), y + m_textures[text[i]].height);
 
             glTexCoord2i(1, 1);
-            glVertex2i(x + (i * (m_textures[text[i]].width) * s) + m_textures[text[i]].width, y + m_textures[text[i]].height);
+            glVertex2f(x + (i * (m_textures[text[i]].width) * s) + m_textures[text[i]].width, y + m_textures[text[i]].height);
 
             glTexCoord2i(1, 0);
-            glVertex2i(x + ((i * m_textures[text[i]].width) * s) + m_textures[text[i]].width, y);
+            glVertex2f(x + ((i * m_textures[text[i]].width) * s) + m_textures[text[i]].width, y);
         glEnd();
 
         glBindTexture(GL_TEXTURE_2D, 0);

@@ -19,7 +19,7 @@ class FontRenderer
 {
 public:
     FontRenderer(FT_Library ft, std::string font_path, int size);
-    void render(std::string text, int x, int y, int s);
+    void render(std::string text, int x, int y, float s);
 private:
     FT_Face m_font;
     std::map<GLchar, Character> m_textures;

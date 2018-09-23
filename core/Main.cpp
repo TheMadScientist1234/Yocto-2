@@ -40,7 +40,7 @@ public:
         xdir = 0;
         ydir = 0;
 
-        fonttest = new FontRenderer(ft, "PICO-8.ttf", 48);
+        fonttest = new FontRenderer(ft, "PICO-8.ttf", 16);
     }
 
     void Draw()
@@ -67,7 +67,7 @@ public:
             ydir = 0;
 
         texture->draw(x, y);
-        fonttest->render("Hey", 0, 0, 2);
+        fonttest->render("Hey this iS a long bit of text.", 0, 0, 1.5);
 
         Application::Draw();
     }
