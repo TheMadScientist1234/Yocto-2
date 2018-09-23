@@ -23,6 +23,8 @@ public:
         glViewport(0, 0, width, height);
 
         glEnable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();

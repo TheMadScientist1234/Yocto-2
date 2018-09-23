@@ -20,16 +20,25 @@ FontRenderer::FontRenderer(FT_Library ft, std::string font_path, int size)
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
 
+        unsigned char newbuffer[m_font->glyph->bitmap.width * m_font->glyph->bitmap.rows * 4];
+        for(int i = 0; i < (sizeof(newbuffer) / sizeof(char)) / 4; i++)
+        {
+            newbuffer[(i * 4)] = m_font->glyph->bitmap.buffer[i];
+            newbuffer[(i * 4) + 1] = m_font->glyph->bitmap.buffer[i];
+            newbuffer[(i * 4) + 2] = m_font->glyph->bitmap.buffer[i];
+            newbuffer[(i * 4) + 3] = m_font->glyph->bitmap.buffer[i];
+        }
+
         glTexImage2D(
             GL_TEXTURE_2D,
             0,
-            GL_RED,
+            GL_RGBA,
             m_font->glyph->bitmap.width,
             m_font->glyph->bitmap.rows,
             0,
-            GL_RED,
+            GL_RGBA,
             GL_UNSIGNED_BYTE,
-            m_font->glyph->bitmap.buffer
+            newbuffer
         );
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
