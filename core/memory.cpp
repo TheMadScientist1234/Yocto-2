@@ -20,7 +20,7 @@ int Memory::peek(lua_State *state)
 {
 	int args = lua_gettop(state);
 	assert(args == 1);
-	int addr = luaL_checkint(state, 1);
+	int addr = luaL_checkinteger(state, 1);
 	uint8_t retval = peek(addr);
 	lua_pushnumber(state, retval);
 	return 1;
@@ -30,8 +30,8 @@ int Memory::poke(lua_State *state)
 {
 	int args = lua_gettop(state);
 	assert(args == 2);
-	int addr = luaL_checkint(state, 1);
-	uint8_t val = luaL_checkint(state, 2);
+	int addr = luaL_checkinteger(state, 1);
+	uint8_t val = luaL_checkinteger(state, 2);
 	poke(addr, val);
 	return 0;
 }
