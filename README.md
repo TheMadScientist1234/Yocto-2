@@ -10,8 +10,10 @@ On Ubuntu:
 - Memory
 
 # Partially supported features
+- Textures
 
 # Unsupported features (currently nearly everything)
+ - Font rendering
  - Loading existing Pico-8 cartridges
  - Cartridge ROM
  - Display
