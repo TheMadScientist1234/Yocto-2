@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Application.hpp"
+#include "memory.hpp"
 
 #include <GL/gl.h>
 
@@ -63,6 +64,8 @@ public:
     {
 	lua_State *state = luaL_newstate();
 	luaL_openlibs(state);
+	lua_register(state, "peek", Memory::peek);
+	lua_register(state, "poke", Memory::poke);
 	std::string s;
         Application::Create();
 	luaL_dostring(state, "test");
@@ -70,7 +73,6 @@ public:
 		std::cout << "> ";
 		std::cout.flush();
 		s = get_word();
-		std::cout << "Entered: " << s << std::endl;
 		luaL_dostring(state, s.c_str());
 		//luaL_dostring(state, s.c_str());
 	}

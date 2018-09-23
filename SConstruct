@@ -1,6 +1,7 @@
 FILES = [
     'core/Main',
-    'core/Application'
+    'core/Application',
+    'core/memory'
 ]
 
 LIBS = [
