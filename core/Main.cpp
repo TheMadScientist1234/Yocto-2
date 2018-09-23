@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Application.hpp"
+#include "../graphics/Texture.hpp"
 
 #include <GL/gl.h>
 #include <SOIL/SOIL.h>
@@ -25,17 +26,7 @@ public:
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-
-        int width, height;
-        unsigned char* image = SOIL_load_image("test.png", &width, &height, 0, SOIL_LOAD_RGB);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-        glBindTexture(GL_TEXTURE_2D, 0);
+        texture = new Texture("test.png");
     }
 
     void Draw()
@@ -43,21 +34,7 @@ public:
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glBegin(GL_QUADS);
-            glTexCoord2d(0, 0);
-            glVertex2i(0, 0);
-
-            glTexCoord2d(0, 1);
-            glVertex2i(0, 64);
-
-            glTexCoord2d(1, 1);
-            glVertex2i(64, 64);
-
-            glTexCoord2d(1, 0);
-            glVertex2i(64, 0);
-        glEnd();
-        glBindTexture(GL_TEXTURE_2D, 0);
+        texture->draw(0, 0);
 
         Application::Draw();
     }
@@ -67,7 +44,7 @@ public:
         Application::Dispose();
     }
 private:
-    GLuint texture = 0;
+    Texture* texture = nullptr;
 };
 
 int main()
