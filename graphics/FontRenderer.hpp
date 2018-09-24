@@ -22,9 +22,13 @@ public:
     void render(std::string text, int x, int y, float s);
 
     void changeColor(GLubyte r, GLubyte g, GLubyte b, GLubyte a);
+
+    int getFontHeight();
 private:
     FT_Face m_font;
     std::map<GLchar, Character> m_textures;
+
+    int m_fontHeight;
 };
 
 #endif

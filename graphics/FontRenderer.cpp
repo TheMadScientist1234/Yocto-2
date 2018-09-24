@@ -53,6 +53,8 @@ FontRenderer::FontRenderer(FT_Library ft, std::string font_path, int size)
 
         m_textures[c] = character;
     }
+
+    m_fontHeight = size;
 }
 
 void FontRenderer::render(std::string text, int x, int y, float s)
@@ -115,3 +117,5 @@ void FontRenderer::changeColor(GLubyte r, GLubyte g, GLubyte b, GLubyte a)
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 }
+
+int FontRenderer::getFontHeight() { return m_fontHeight; }
