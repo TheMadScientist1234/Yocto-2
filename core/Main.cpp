@@ -4,21 +4,29 @@
 #include <core/Application.hpp>
 #include <graphics/Texture.hpp>
 #include <graphics/FontRenderer.hpp>
+#include <core/Console.hpp>
 
 #include <GL/gl.h>
-#include <ft2build.h>
-#include <freetype/freetype.h>
+
+Console* console = nullptr;
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    console->keyPressed(window, key, scancode, action, mods);
+}
 
 class TestApp : public Application
 {
 public:
-    TestApp(){}
+    TestApp()
+    {
+        width = 800;
+        height = 600;
+    }
 
     void Create()
     {
         Application::Create();
-
-        FT_Init_FreeType(&ft);
 
         glViewport(0, 0, width, height);
 
@@ -39,8 +47,9 @@ public:
         y = 0;
         xdir = 0;
         ydir = 0;
-
-        fonttest = new FontRenderer(ft, "PICO-8.ttf", 16);
+        
+        console = new Console();
+        glfwSetKeyCallback(m_window, key_callback);
     }
 
     void Draw()
@@ -68,8 +77,7 @@ public:
 
         texture->draw(x, y);
 
-        fonttest->changeColor(0, 255, 100, 255);
-        fonttest->render("Hey this iS a long bit of text.", 0, 0, 1.5);
+        console->draw();
 
         Application::Draw();
     }
@@ -84,7 +92,6 @@ private:
     int xdir, ydir;
 
     FT_Library ft;
-    FontRenderer* fonttest = nullptr;
 };
 
 int main()
