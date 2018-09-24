@@ -5,12 +5,32 @@
 
 #include <string>
 
+struct Rect
+{
+    GLint x;
+    GLint y;
+    GLint w;
+    GLint h;
+};
+
+struct FRect
+{
+    GLfloat x;
+    GLfloat y;
+    GLfloat w;
+    GLfloat h;
+};
+
 class Texture
 {
 public:
     Texture(std::string path);
 
     void draw(int x, int y);
+    
+    void setRegion(int x, int y, int w, int h);
+    void setRegion(Rect rect);
+    Rect getRegion();
 
     int getWidth();
     int getHeight();
@@ -21,6 +41,8 @@ private:
 
     int m_width;
     int m_height;
+
+    Rect m_region;
 };
 
 #endif

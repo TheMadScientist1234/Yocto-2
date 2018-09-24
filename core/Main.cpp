@@ -43,6 +43,7 @@ public:
         glLoadIdentity();
 
         texture = new Texture("test.png");
+        texture->setRegion(0, 0, 32, 32);
         x = 0;
         y = 0;
         xdir = 0;

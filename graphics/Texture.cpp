@@ -21,25 +21,54 @@ Texture::Texture(std::string path)
 
     m_width = width;
     m_height = height;
+
+    m_region.x = 0;
+    m_region.y = 0;
+    m_region.w = width;
+    m_region.h = height;
 }
 
 void Texture::draw(int x, int y)
 {
+    // Get the texture coordinates for the region
+    GLfloat reg_left = (GLfloat) m_region.x / (GLfloat) m_width;
+    GLfloat reg_right = ((GLfloat) m_region.x + (GLfloat) m_region.w) / (GLfloat) m_width;
+    GLfloat reg_top = (GLfloat) m_region.y / (GLfloat) m_height;
+    GLfloat reg_bottom = ((GLfloat) m_region.y + (GLfloat) m_region.h) / (GLfloat) m_height;
+
     glBindTexture(GL_TEXTURE_2D, m_id);
     glBegin(GL_QUADS);
-        glTexCoord2i(0, 0);
+        glTexCoord2f(reg_left, reg_top);
         glVertex2i(x, y);
 
-        glTexCoord2i(0, 1);
-        glVertex2i(x, y + m_height);
+        glTexCoord2f(reg_left, reg_bottom);
+        glVertex2i(x, y + m_region.h);
 
-        glTexCoord2i(1, 1);
-        glVertex2i(x + m_width, y + m_height);
+        glTexCoord2f(reg_right, reg_bottom);
+        glVertex2i(x + m_region.w, y + m_region.h);
 
-        glTexCoord2i(1, 0);
-        glVertex2i(x + m_width, y);
+        glTexCoord2f(reg_right, reg_top);
+        glVertex2i(x + m_region.w, y);
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Texture::setRegion(int x, int y, int w, int h)
+{
+    m_region.x = x;
+    m_region.y = y;
+    m_region.w = w;
+    m_region.h = h;
+}
+
+void Texture::setRegion(Rect rect)
+{
+    m_region = rect;
+}
+
+Rect Texture::getRegion()
+{
+    return m_region;
 }
 
 int Texture::getWidth() { return m_width; }
