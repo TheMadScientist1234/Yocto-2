@@ -12,6 +12,7 @@ On Ubuntu:
 - Textures
 
 # Partially supported features
+ - Console
 
 # Unsupported features (currently nearly everything)
  - Loading existing Pico-8 cartridges
