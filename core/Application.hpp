@@ -3,6 +3,12 @@
 
 #include <GLFW/glfw3.h>
 
+#define genericCallback(functionName)\
+    [](GLFWwindow* window, auto... args) {\
+        auto pointer = static_cast<MyGlWindow*>(glfwGetWindowUserPointer(window));\
+        if (pointer->functionName) pointer->functionName(pointer, args...);\
+    }
+
 class Application
 {
 public:
@@ -16,7 +22,7 @@ public:
     void Dispose();
 
     bool GetShouldClose();
-private:
+    
     GLFWwindow *m_window = nullptr;
 
     bool m_keys[65536];
