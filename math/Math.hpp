@@ -7,7 +7,9 @@ struct Vector2i
 {
     GLint x;
     GLint y;
-    
+
+    Vector2i() { x = 0; y = 0; }
+
     Vector2i(GLint x, GLint y)
     {
         this->x = x;
