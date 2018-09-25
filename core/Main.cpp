@@ -3,7 +3,6 @@
 
 #include <core/Application.hpp>
 #include <graphics/Texture.hpp>
-#include <graphics/FontRenderer.hpp>
 #include <core/Console.hpp>
 
 #include <GL/gl.h>
@@ -91,8 +90,6 @@ private:
     Texture* texture = nullptr;
     int x, y;
     int xdir, ydir;
-
-    FT_Library ft;
 };
 
 int main()

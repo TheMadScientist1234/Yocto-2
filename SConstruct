@@ -5,7 +5,7 @@ FILES = [
     'core/Console',
 
     'graphics/Texture',
-    'graphics/FontRenderer'
+    'graphics/Font'
 ]
 
 LIBS = [
