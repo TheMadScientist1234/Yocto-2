@@ -28,6 +28,8 @@ public:
     void draw();
     void scrollUp();
 private:
+    void callFunction(std::string function);
+
     int currentRow;
     std::vector<ConsoleRow> m_rows;
 };

@@ -4,9 +4,11 @@
 #include <freetype/freetype.h>
 #include <ft2build.h>
 #include <GLFW/glfw3.h>
+#include <core/lua.hpp>
 
 #include <string>
 #include <algorithm>
+#include <iostream>
 
 Console::Console() : m_rows(10)
 {
@@ -34,8 +36,20 @@ void Console::keyPressed(GLFWwindow* window, int key, int scancode, int action, 
     switch(key)
     {
         default:
-	    if(isalnum(key))
+	    if(isalnum(key) && mods == 0)
             	m_rows[currentRow].text += key;
+            break;
+        case GLFW_KEY_9:
+            if(mods == GLFW_MOD_SHIFT)
+                m_rows[currentRow].text += '(';
+            break;
+        case GLFW_KEY_0:
+            if(mods == GLFW_MOD_SHIFT)
+                m_rows[currentRow].text += ')';
+            break;
+        case GLFW_KEY_APOSTROPHE:
+            if(mods == GLFW_MOD_SHIFT)
+                m_rows[currentRow].text += '"';
             break;
         case GLFW_KEY_SPACE:
             m_rows[currentRow].text += ' ';
@@ -45,6 +59,7 @@ void Console::keyPressed(GLFWwindow* window, int key, int scancode, int action, 
                 m_rows[currentRow].text = m_rows[currentRow].text.substr(0, m_rows[currentRow].text.size() - 1);
             break;
 	case GLFW_KEY_ENTER:
+        callFunction(m_rows[currentRow].text);
 	    currentRow++;
 	    if(currentRow == 10)
 		scrollUp();
@@ -71,4 +86,26 @@ void Console::draw()
 
         FL_DrawText(m_rows[i].text, 0, i * 32, 1);
     }
+}
+
+void Console::callFunction(std::string function)
+{
+    std::string finalstr = function.substr(1, function.length());
+
+    bool readfun = true;
+    std::string funstr = "";
+    std::string argstr = "";
+    for(int i = 0; i < finalstr.length(); i++)
+    {
+        if(finalstr.at(i) != '(' && readfun)
+            funstr += finalstr.at(i);
+        else
+        {
+            readfun = false;
+            argstr += finalstr.at(i);
+        }
+    }
+
+    std::cout << funstr << std::endl;
+    std::cout << argstr << std::endl;
 }
