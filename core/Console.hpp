@@ -1,7 +1,6 @@
 #ifndef CONSOLE_HPP
 #define CONSOLE_HPP
 
-#include <graphics/FontRenderer.hpp>
 #include <GLFW/glfw3.h>
 
 #include <string>
@@ -28,7 +27,6 @@ public:
 
     void draw();
 private:
-    FontRenderer* fr = nullptr;
 
     ConsoleRow m_rows[10];
 };

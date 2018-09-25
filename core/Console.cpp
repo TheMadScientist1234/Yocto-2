@@ -1,6 +1,6 @@
 #include "Console.hpp"
 
-#include <graphics/FontRenderer.hpp>
+#include <graphics/Font.hpp>
 #include <freetype/freetype.h>
 #include <ft2build.h>
 #include <GLFW/glfw3.h>
@@ -12,7 +12,7 @@ Console::Console()
     FT_Library ft;
     FT_Init_FreeType(&ft);
 
-    fr = new FontRenderer(ft, "YOCTO2.ttf", 64);
+    FL_Init(ft, "YOCTO2.ttf", 64);
 
     m_rows[0].text = "YOCTO 2";
     m_rows[2].text = ">";
@@ -40,19 +40,15 @@ void Console::draw()
         switch(m_rows[i].type)
         {
             case NORMAL:
-                fr->changeColor(255, 255, 255, 255);
                 break;
             case WARNING:
-                fr->changeColor(255, 255, 0, 255);
                 break;
             case ERROR:
-                fr->changeColor(255, 0, 0, 255);
                 break;
             default:
-                fr->changeColor(255, 255, 255, 255);
                 break;
         }
 
-        fr->render(m_rows[i].text, 0, i * 32, 1.5f);
+        FL_DrawText(m_rows[i].text, 0, i * 32, 1);
     }
 }
