@@ -37,6 +37,9 @@ void Console::keyPressed(GLFWwindow* window, int key, int scancode, int action, 
 	    if(isalnum(key))
             	m_rows[currentRow].text += key;
             break;
+        case GLFW_KEY_SPACE:
+            m_rows[currentRow].text += ' ';
+            break;
         case GLFW_KEY_BACKSPACE:
             if(m_rows[currentRow].text.size() != 1)
                 m_rows[currentRow].text = m_rows[currentRow].text.substr(0, m_rows[currentRow].text.size() - 1);
