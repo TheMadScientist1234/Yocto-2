@@ -18,14 +18,23 @@ struct Character
     GLuint advance;
 };
 
+struct FontColor
+{
+    GLubyte r;
+    GLubyte g;
+    GLubyte b;
+};
+
 static FT_Face fl_curface;
 static int fl_font_size;
+static FontColor fl_color;
 
 static std::map<GLchar, Character> fl_characters;
 
 void FL_Init(FT_Library ft, std::string path_to_font, int font_size);
 void FL_Free();
 
+void FL_ChangeColor(FontColor color);
 void FL_DrawText(std::string text, GLfloat x, GLfloat y, GLfloat scale);
 
 #endif

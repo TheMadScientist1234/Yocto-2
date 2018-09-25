@@ -72,15 +72,22 @@ void Console::draw()
 {
     for(int i = 0; i < m_rows.size(); i++)
     {
+        FontColor color;
         switch(m_rows[i].type)
         {
             case NORMAL:
+                color.r = 255;
+                color.g = 255;
+                color.b = 255;
                 break;
             case WARNING:
+                FL_ChangeColor({255, 255, 0});
                 break;
             case ERROR:
+                FL_ChangeColor({255, 0, 0});
                 break;
             default:
+                FL_ChangeColor({255, 255, 255});
                 break;
         }
 
