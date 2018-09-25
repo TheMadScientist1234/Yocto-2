@@ -2,7 +2,7 @@
 #define CONSOLE_HPP
 
 #include <GLFW/glfw3.h>
-
+#include <vector>
 #include <string>
 
 enum RowType
@@ -26,9 +26,10 @@ public:
     void keyPressed(GLFWwindow* window, int key, int scancode, int action, int mods);
 
     void draw();
+    void scrollUp();
 private:
-
-    ConsoleRow m_rows[10];
+    int currentRow;
+    std::vector<ConsoleRow> m_rows;
 };
 
 #endif
