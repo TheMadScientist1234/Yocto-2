@@ -15,7 +15,7 @@ struct Character
     GLuint textureID;
     Vector2i size;
     Vector2i bearing;
-    GLuint advance;
+    GLint64 advance;
 };
 
 struct FontColor
