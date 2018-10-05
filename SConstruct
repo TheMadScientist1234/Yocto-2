@@ -41,4 +41,4 @@ O_FILES.append('lua/liblua.a')
 
 Command("lua/liblua.a", "", "cd lua && make")
 Command("freetype2/objs/libfreetype.a", "", "cd freetype2 && jam")
-Program('yocto2', O_FILES, LIBS=LIBS, CXXFLAGS='-std=c++11', LIBPATH = [ 'lua', 'freetype2/objs' ])
+Program('yocto2', O_FILES, LIBS=LIBS, CXXFLAGS='-std=c++11 -g', LIBPATH = [ 'lua', 'freetype2/objs' ])
