@@ -2,8 +2,6 @@
 
 #include <stdexcept>
 
-#include <GLFW/glfw3.h>
-
 Application::Application() {}
 
 void Application::Create()
@@ -21,6 +19,10 @@ void Application::Create()
         throw std::runtime_error("[GLFW] Failed to create window!");
 
     glfwMakeContextCurrent(m_window);
+
+    glewExperimental = true;
+    if(glewInit() != GLEW_OK)
+        throw std::runtime_error("[GLEW] Failed to initialize!");
 }
 
 void Application::Draw()

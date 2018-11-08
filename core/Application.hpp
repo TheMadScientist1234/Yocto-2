@@ -1,13 +1,8 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
-#define genericCallback(functionName)\
-    [](GLFWwindow* window, auto... args) {\
-        auto pointer = static_cast<MyGlWindow*>(glfwGetWindowUserPointer(window));\
-        if (pointer->functionName) pointer->functionName(pointer, args...);\
-    }
 
 class Application
 {

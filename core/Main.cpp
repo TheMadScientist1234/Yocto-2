@@ -5,7 +5,7 @@
 #include <graphics/Texture.hpp>
 #include <core/Console.hpp>
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 Console* console = nullptr;
 

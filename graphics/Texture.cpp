@@ -1,6 +1,6 @@
 #include "Texture.hpp"
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 #include <SOIL/SOIL.h>
 
 #include <string>

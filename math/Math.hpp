@@ -1,7 +1,7 @@
 #ifndef MATH_HPP
 #define MATH_HPP
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 struct Vector2i
 {

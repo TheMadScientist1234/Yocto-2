@@ -76,9 +76,7 @@ void Console::draw()
         switch(m_rows[i].type)
         {
             case NORMAL:
-                color.r = 255;
-                color.g = 255;
-                color.b = 255;
+                //FL_ChangeColor({255, 255, 255});
                 break;
             case WARNING:
                 FL_ChangeColor({255, 255, 0});
