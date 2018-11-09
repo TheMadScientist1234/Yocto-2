@@ -5,7 +5,7 @@
 
 #include <ft2build.h>
 #include <freetype/freetype.h>
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 #include <string>
 #include <map>
