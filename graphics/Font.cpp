@@ -31,11 +31,11 @@ void FL_Init(FT_Library ft, std::string path_to_font, int font_size)
         glTexImage2D(
             GL_TEXTURE_2D,
             0,
-            GL_RED,
+            GL_ALPHA,
             fl_curface->glyph->bitmap.width,
             fl_curface->glyph->bitmap.rows,
             0,
-            GL_RED,
+            GL_ALPHA,
             GL_UNSIGNED_BYTE,
             fl_curface->glyph->bitmap.buffer
         );
