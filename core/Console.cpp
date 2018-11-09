@@ -19,6 +19,7 @@ Console::Console() : m_rows(10)
 
     currentRow = 0;
     m_rows[currentRow].text = "YOCTO 2";
+    m_rows[currentRow].type = WARNING;
     currentRow = 2;
     m_rows[currentRow].text = ">";
 }
@@ -72,20 +73,19 @@ void Console::draw()
 {
     for(int i = 0; i < m_rows.size(); i++)
     {
-        FontColor color;
         switch(m_rows[i].type)
         {
             case NORMAL:
-                //FL_ChangeColor({255, 255, 255});
+                FL_ChangeColor(1.0, 1.0, 1.0);
                 break;
             case WARNING:
-                FL_ChangeColor({255, 255, 0});
+                FL_ChangeColor(1.0, 1.0, 0.0);
                 break;
             case ERROR:
-                FL_ChangeColor({255, 0, 0});
+                FL_ChangeColor(1.0, 0.0, 0.0);
                 break;
             default:
-                FL_ChangeColor({255, 255, 255});
+                FL_ChangeColor(1.0, 1.0, 1.0);
                 break;
         }
 
