@@ -38,6 +38,7 @@ void Texture::draw(int x, int y)
 
     glBindTexture(GL_TEXTURE_2D, m_id);
     glBegin(GL_QUADS);
+        glColor3f(1.0, 1.0, 1.0);
         glTexCoord2f(reg_left, reg_top);
         glVertex2i(x, y);
 
