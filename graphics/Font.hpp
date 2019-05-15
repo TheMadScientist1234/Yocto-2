@@ -32,7 +32,7 @@ static FontColor fl_color;
 static std::map<GLchar, Character> fl_characters;
 
 void FL_Init(FT_Library ft, std::string path_to_font, int font_size);
-void FL_Free();
+void FL_FreeFace();
 
 void FL_ChangeColor(GLfloat r, GLfloat g, GLfloat b);
 void FL_DrawText(std::string text, GLfloat x, GLfloat y, GLfloat scale);

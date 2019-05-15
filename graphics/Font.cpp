@@ -7,6 +7,8 @@
 #include <GL/glew.h>
 
 #include <string>
+#include <iterator>
+#include <vector>
 #include <map>
 
 void FL_Init(FT_Library ft, std::string path_to_font, int font_size)
@@ -54,6 +56,22 @@ void FL_Init(FT_Library ft, std::string path_to_font, int font_size)
 
         glBindTexture(GL_TEXTURE_2D, 0);
     }
+
+    FT_Done_Face(fl_curface);
+    FT_Done_FreeType(ft);
+}
+
+void FL_FreeFace()
+{
+    // Delete all the textures all at once
+    std::vector<GLuint> textures;
+    for(std::map<GLchar, Character>::const_iterator iter = fl_characters.begin(); iter != fl_characters.end(); iter++)
+    {
+        textures.push_back(iter->second.textureID);
+    }
+    glDeleteTextures(textures.size(), &textures[0]);
+
+    fl_characters.clear();
 }
 
 void FL_ChangeColor(GLfloat r, GLfloat g, GLfloat b)
